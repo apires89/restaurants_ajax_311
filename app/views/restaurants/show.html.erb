@@ -1,0 +1,26 @@
+<!-- app/views/restaurants/show.html.erb -->
+<div class="show-page restaurant">
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/random);background-size: cover;">
+  <div class="container">
+    <h1><%= @restaurant.name %></h1>
+    <p><small><%= @restaurant.address %></small></p>
+    <p style="margin-left: 90%;">
+      <%= pluralize @restaurant.reviews.size, "review" %>
+    </p>
+  </div>
+</div>
+</div>
+  <div id="reviews" style="text-align: center">
+    <h1>All Reviews</h1>
+    <% if @restaurant.reviews.blank? %>
+      Be the first to leave a review for <%= @restaurant.name %>
+    <% else %>
+      <% @restaurant.reviews.each do |review| %>
+        <%= render 'reviews/show', review: review %>
+      <% end %>
+    <% end %>
+    <%= render 'reviews/form', restaurant: @restaurant, review: @review %>
+  </div>
+
+
+
